@@ -16,8 +16,8 @@
       "brand": "Eufy",
       "category": "exterieure-haut-de-gamme",
       "note": "Caméra solaire autonome avec projecteur et double objectif pour vision large.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0FL1S2MXR",
+      "verified": true
     },
     {
       "id": "tapo-c425",
@@ -25,8 +25,8 @@
       "brand": "TP-Link",
       "category": "exterieure-entree-de-gamme",
       "note": "Caméra extérieure sur batterie, bon rapport qualité-prix, étanche IP65.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0CMCWXPFX",
+      "verified": true
     },
     {
       "id": "ezviz-c6n",
@@ -34,8 +34,8 @@
       "brand": "Ezviz",
       "category": "interieure-entree-de-gamme",
       "note": "Caméra intérieure motorisée à 360°, suivi automatique du mouvement.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B07W4FMSD9",
+      "verified": true
     },
     {
       "id": "tapo-c200",
@@ -43,8 +43,8 @@
       "brand": "TP-Link",
       "category": "interieure-entree-de-gamme",
       "note": "Caméra intérieure compacte, format très abordable, bon point d'entrée pour débuter.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B07XLML2YS",
+      "verified": true
     },
     {
       "id": "ring-indoor-cam",
@@ -52,8 +52,8 @@
       "brand": "Ring",
       "category": "interieure-entree-de-gamme",
       "note": "Petit format discret, intégration facile à l'écosystème Ring/Alexa.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0B6GKHS2S",
+      "verified": true
     },
     {
       "id": "arlo-pro-5s",
@@ -61,8 +61,8 @@
       "brand": "Arlo",
       "category": "exterieure-haut-de-gamme",
       "note": "2K HDR, projecteur intégré, sirène intégrée, sans fil.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0GQ5LY9TL",
+      "verified": true
     },
     {
       "id": "reolink-rlc-810a",
@@ -70,8 +70,8 @@
       "brand": "Reolink",
       "category": "filaire-poe",
       "note": "Caméra filaire PoE 4K, idéale pour une installation fixe et fiable sans batterie.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B08F7C37NZ",
+      "verified": true
     },
     {
       "id": "ezviz-db2",
@@ -79,8 +79,8 @@
       "brand": "Ezviz",
       "category": "sonnette",
       "note": "Sonnette connectée sur batterie avec vision grand angle et détection de personnes.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0GVK6N5B9",
+      "verified": true
     },
     {
       "id": "reolink-kit-4-cameras",
@@ -88,8 +88,8 @@
       "brand": "Reolink",
       "category": "kit-multi-cameras",
       "note": "Kit complet pour surveiller toute la maison, gestion centralisée sur une seule application.",
-      "asin": "REMPLACER_ASIN",
-      "verified": false
+      "asin": "B0FYCX8Z61",
+      "verified": true
     }
   ]
 }
