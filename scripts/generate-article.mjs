@@ -248,7 +248,7 @@ Réponds UNIQUEMENT avec un bloc de code \`\`\`json contenant un objet avec exac
 N'ajoute aucun texte avant ou après le bloc \`\`\`json.`;
 
   const messages = [{ role: 'user', content: userPrompt }];
-  let article = await callAndParse(client, systemPrompt, messages);
+  let article = await callAndParseWithRetry(client, systemPrompt, messages);
 
   let wordCount = countWords(article.body);
   if (wordCount < MIN_WORDS) {
@@ -258,10 +258,23 @@ N'ajoute aucun texte avant ou après le bloc \`\`\`json.`;
       role: 'user',
       content: `Ton brouillon ne fait que ${wordCount} mots, il en faut au moins ${MIN_WORDS} (idéalement ${TARGET_WORDS}). Réécris une version complète et plus développée (plus d'exemples, de sous-parties, de détails concrets), en respectant strictement le même format de réponse (un seul bloc \`\`\`json avec les mêmes clés).`,
     });
-    article = await callAndParse(client, systemPrompt, messages);
+    article = await callAndParseWithRetry(client, systemPrompt, messages);
   }
 
   return article;
+}
+
+async function callAndParseWithRetry(client, systemPrompt, messages, attempts = 2) {
+  let lastError;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await callAndParse(client, systemPrompt, messages);
+    } catch (err) {
+      lastError = err;
+      console.warn(`Tentative ${i + 1}/${attempts} échouée (${err.message}).${i + 1 < attempts ? ' Nouvel essai...' : ''}`);
+    }
+  }
+  throw lastError;
 }
 
 async function callAndParse(client, systemPrompt, messages) {
