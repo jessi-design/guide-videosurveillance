@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'articles'>;
+}
+
+const { entry } = Astro.props;
+
+const typeLabels: Record<string, string> = {
+  comparatif: 'Comparatif',
+  complet: 'Guide complet',
+  thematique: 'Astuce & idée',
+};
+---
+
+<a class="card" href={`/articles/${entry.data.slug}/`}>
+  {entry.data.heroImage && (
+    <img class="card-thumb" src={entry.data.heroImage} alt={entry.data.heroImageAlt || entry.data.title} loading="lazy" />
+  )}
+  <span class="tag">{typeLabels[entry.data.type]}</span>
+  <h3>{entry.data.title}</h3>
+  <p>{entry.data.description}</p>
+</a>

@@ -1,0 +1,61 @@
+name: Publication quotidienne d'un article
+
+on:
+  schedule:
+    # 06:00 UTC = 08:00 (hiver) / 07:00 (été) heure de Paris
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v5
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Mettre en cache le navigateur Playwright
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Installer Chromium (pour générer les épingles Pinterest)
+        run: npx playwright install --with-deps chromium
+
+      - name: Générer l'article du jour
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AMAZON_TAG: ${{ secrets.AMAZON_TAG }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          ARTICLE_MODEL: ${{ vars.ARTICLE_MODEL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: npm run generate
+
+      - name: Vérifier que le site compile
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: npm run build
+
+      - name: Committer et pousser le nouvel article
+        run: |
+          git config user.name "guidecameras-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/content/articles public/pins
+          if git diff --cached --quiet; then
+            echo "Aucun nouvel article à committer."
+          else
+            git commit -m "Article automatique du $(date -u +'%Y-%m-%d')"
+            git push
+          fi

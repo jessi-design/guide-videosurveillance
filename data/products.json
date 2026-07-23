@@ -1,0 +1,95 @@
+{
+  "_readme": "Catalogue des produits pouvant être recommandés dans les articles. IMPORTANT : les ASIN ci-dessous sont des PLACEHOLDERS (REMPLACER_ASIN) et verified=false — je n'ai pas pu les vérifier moi-même sur Amazon.fr. Avant la mise en ligne, trouve le vrai ASIN de chaque produit sur Amazon.fr (URL du produit ou barre SiteStripe Amazon Associates), vérifie que le modèle et le titre correspondent exactement, remplis 'asin' et passe 'verified' à true. Tant qu'un produit n'a pas verified:true avec un ASIN valide, le script de génération ne l'utilisera JAMAIS (aucun risque de lien cassé). Le tag d'affilié n'est jamais stocké ici : il est lu depuis la variable d'environnement AMAZON_TAG au moment de la génération.",
+  "products": [
+    {
+      "id": "reolink-argus-4-pro",
+      "name": "Reolink Argus 4 Pro",
+      "brand": "Reolink",
+      "category": "exterieure-haut-de-gamme",
+      "note": "Caméra extérieure sur batterie, 4K, détection de mouvement intelligente par IA.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "eufy-solocam-s340",
+      "name": "Eufy SoloCam S340",
+      "brand": "Eufy",
+      "category": "exterieure-haut-de-gamme",
+      "note": "Caméra solaire autonome avec projecteur et double objectif pour vision large.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "tapo-c425",
+      "name": "TP-Link Tapo C425",
+      "brand": "TP-Link",
+      "category": "exterieure-entree-de-gamme",
+      "note": "Caméra extérieure sur batterie, bon rapport qualité-prix, étanche IP65.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "ezviz-c6n",
+      "name": "Ezviz C6N",
+      "brand": "Ezviz",
+      "category": "interieure-entree-de-gamme",
+      "note": "Caméra intérieure motorisée à 360°, suivi automatique du mouvement.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "tapo-c200",
+      "name": "TP-Link Tapo C200",
+      "brand": "TP-Link",
+      "category": "interieure-entree-de-gamme",
+      "note": "Caméra intérieure compacte, format très abordable, bon point d'entrée pour débuter.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "ring-indoor-cam",
+      "name": "Ring Indoor Cam",
+      "brand": "Ring",
+      "category": "interieure-entree-de-gamme",
+      "note": "Petit format discret, intégration facile à l'écosystème Ring/Alexa.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "arlo-pro-5s",
+      "name": "Arlo Pro 5S",
+      "brand": "Arlo",
+      "category": "exterieure-haut-de-gamme",
+      "note": "2K HDR, projecteur intégré, sirène intégrée, sans fil.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "reolink-rlc-810a",
+      "name": "Reolink RLC-810A (PoE)",
+      "brand": "Reolink",
+      "category": "filaire-poe",
+      "note": "Caméra filaire PoE 4K, idéale pour une installation fixe et fiable sans batterie.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "ezviz-db2",
+      "name": "Ezviz DB2 (sonnette vidéo)",
+      "brand": "Ezviz",
+      "category": "sonnette",
+      "note": "Sonnette connectée sur batterie avec vision grand angle et détection de personnes.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    },
+    {
+      "id": "reolink-kit-4-cameras",
+      "name": "Reolink Argus 3 Pro — Kit 4 caméras + hub",
+      "brand": "Reolink",
+      "category": "kit-multi-cameras",
+      "note": "Kit complet pour surveiller toute la maison, gestion centralisée sur une seule application.",
+      "asin": "REMPLACER_ASIN",
+      "verified": false
+    }
+  ]
+}
