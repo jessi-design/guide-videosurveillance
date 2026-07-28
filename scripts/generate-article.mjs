@@ -83,7 +83,10 @@ async function main() {
   }
   console.log(`Liens d'affiliation insérés : ${insertedProducts.join(', ') || 'aucun'}`);
 
-  const heroImage = pexelsApiKey ? await fetchHeroImage(article.imageQuery || topic.title, pexelsApiKey) : null;
+  const usedHeroImages = pexelsApiKey ? await getExistingHeroImages() : new Set();
+  const heroImage = pexelsApiKey
+    ? await fetchHeroImage(article.imageQuery || topic.title, pexelsApiKey, usedHeroImages)
+    : null;
   if (pexelsApiKey && !heroImage) {
     console.warn("Aucune image trouvée sur Pexels pour cette requête, l'article sera publié sans image.");
   } else if (heroImage) {
@@ -162,6 +165,23 @@ async function getExistingTopicIds() {
     if (match) ids.add(match[1]);
   }
   return ids;
+}
+
+async function getExistingHeroImages() {
+  let files = [];
+  try {
+    files = await fs.readdir(ARTICLES_DIR);
+  } catch {
+    return new Set();
+  }
+  const urls = new Set();
+  for (const file of files) {
+    if (!file.endsWith('.md')) continue;
+    const content = await fs.readFile(path.join(ARTICLES_DIR, file), 'utf8');
+    const match = content.match(/^heroImage:\s*"([^"]+)"\s*$/m);
+    if (match) urls.add(match[1]);
+  }
+  return urls;
 }
 
 async function countExistingArticles() {
@@ -354,17 +374,18 @@ function escapeControlCharsInStrings(text) {
   return result;
 }
 
-async function fetchHeroImage(query, pexelsApiKey) {
+async function fetchHeroImage(query, pexelsApiKey, usedUrls = new Set()) {
   try {
-    const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape`;
+    const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=15&orientation=landscape`;
     const res = await fetch(url, { headers: { Authorization: pexelsApiKey } });
     if (!res.ok) {
       console.warn(`Pexels a répondu avec le statut ${res.status}, image ignorée.`);
       return null;
     }
     const data = await res.json();
-    const photo = data.photos && data.photos[0];
-    if (!photo) return null;
+    const photos = data.photos || [];
+    if (photos.length === 0) return null;
+    const photo = photos.find((p) => !usedUrls.has(p.src.large2x)) || photos[0];
     return {
       url: photo.src.large2x,
       alt: photo.alt || query,
