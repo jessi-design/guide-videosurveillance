@@ -281,6 +281,12 @@ N'ajoute aucun texte avant ou après le bloc \`\`\`json.`;
     article = await callAndParseWithRetry(client, systemPrompt, messages);
   }
 
+  // Champs décoratifs : s'ils manquent (rare non-conformité du modèle), on retombe sur
+  // une valeur de secours plutôt que de jeter tout un article correctement rédigé.
+  if (!article.imageQuery) article.imageQuery = topic.title;
+  if (!article.pinTitle) article.pinTitle = article.title;
+  if (!article.pinDescription) article.pinDescription = article.description;
+
   return article;
 }
 
@@ -334,7 +340,8 @@ async function callAndParse(client, systemPrompt, messages) {
     }
   }
 
-  for (const key of ['title', 'description', 'slug', 'keywords', 'faq', 'body', 'imageQuery', 'pinTitle', 'pinDescription']) {
+  // Ces clés sont indispensables : sans elles, on ne peut pas publier un article correct.
+  for (const key of ['title', 'description', 'slug', 'keywords', 'faq', 'body']) {
     if (!(key in parsed)) throw new Error(`Réponse du modèle incomplète, clé manquante : "${key}"`);
   }
 
